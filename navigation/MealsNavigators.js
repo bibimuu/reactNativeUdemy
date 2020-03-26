@@ -4,6 +4,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import {Platform} from 'react-native';
 import Colors from '../constants/Colors'
+import FavoriteScreen from "../screens/FavoritesScreen"
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
@@ -22,7 +23,9 @@ const MealsNavigator = createStackNavigator({
     //   headerTintColor: Platform.OS === "android" ? "white": Colors.primaryColor
     // }
   },
-  MealDetail: MealDetailScreen
+  MealDetail: {
+    screen:MealDetailScreen
+  }
 },
 {
   // mode:"modal"アニメーションの変化
@@ -36,4 +39,9 @@ const MealsNavigator = createStackNavigator({
   }
 );
 
-export default createAppContainer(MealsNavigator);
+const MealsFavTabNavigator = createBottomTabNavigator({
+  Meals:MealsNavigator,
+  Favorites:FavoriteScreen
+})
+
+export default createAppContainer(MealsFavTabNavigator);

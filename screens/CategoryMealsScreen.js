@@ -16,7 +16,14 @@ const CategoryMealsScreen = props =>{
     return <MealItem 
       title={itemData.item.title} 
       duration={itemData.item.duration}
-      onSelectMeal={()=>{}} 
+      complexity={itemData.item.complexity.toUpperCase()}
+      affordability={itemData.item.affordability.toUpperCase()}
+      image={itemData.item.imageUrl}
+      onSelectMeal={()=>{
+        props.navigation.navigate({routeName:'MealDetail', params:{
+          mealId: itemData.item.id
+        }})
+      }} 
     />
   }
 
@@ -25,7 +32,7 @@ const CategoryMealsScreen = props =>{
       <FlatList 
       data={displayedMeals} 
       renderItem={renderMealItem}
-      style={{width:"100%"}}
+      style={{width:"95%"}}
       />
       {/* <Text>CategoryMealsScreen </Text>
       <Text>{selectedCategory.title}</Text>
