@@ -10,6 +10,7 @@ import {CATEGORIES} from "../data/dummy-data"
 const CategoriesScreen = props =>{
 
   const renderGridItem = (itemData) =>{
+    console.log(itemData)
     return <CategoryGridTile 
     title={itemData.item.title}
     color={itemData.item.color}
