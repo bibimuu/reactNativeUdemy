@@ -1,9 +1,10 @@
 import React from "react";
-// import {View,Text,StyleSheet,Button,FlatList} from "react-native";
+import {View,StyleSheet} from "react-native";
 
 import {CATEGORIES} from "../data/dummy-data"
 import { useSelector } from "react-redux";
 import MealList from "../components/MealList"
+import DefaultText from "../components/DefaultText"
 
 const CategoryMealsScreen = props =>{
 
@@ -15,6 +16,14 @@ const CategoryMealsScreen = props =>{
   const displayedMeals = availableMeals.filter(meal => meal.categoryIds.indexOf(catId) >= 0)
   // https://techacademy.jp/magazine/14759 catIdが何番目にあるかindexofが教えてくれる。なければ、−１を返す
   // meal.categoryIds.includes(catId)でもいける
+
+  if(displayedMeals.length === 0){
+    return (
+    <View style={styles.content}>
+      <DefaultText>No content found</DefaultText>
+    </View>
+    )
+  }
 
   return <MealList listData={displayedMeals} navigation={props.navigation}/>
 };
@@ -30,6 +39,12 @@ CategoryMealsScreen.navigationOptions = (navigationData) =>{
   
 }
 
-
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems:"center"
+  }
+})
 
 export default CategoryMealsScreen;
